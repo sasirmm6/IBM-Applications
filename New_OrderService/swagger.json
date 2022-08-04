@@ -1,0 +1,110 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "New_OrderService",
+    "version" : "1.0.0",
+    "description" : "New_OrderService"
+  },
+  "paths" : {
+    "/CreateOrder" : {
+      "post" : {
+        "operationId" : "postCreateOrder",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/responseDef"
+            }
+          }
+        },
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "description" : "Insert a CreateOrder",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "schema" : {
+            "$ref" : "#/definitions/requestDef"
+          },
+          "description" : "The request body for the operation",
+          "required" : true
+        } ]
+      }
+    },
+    "/orderStatus" : {
+      "get" : {
+        "operationId" : "getOrderStatus",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/orderStatusDef"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve orderStatus",
+        "parameters" : [ {
+          "name" : "orderId",
+          "in" : "query",
+          "type" : "string",
+          "description" : "This give status of order"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/new_orderservice/v1",
+  "definitions" : {
+    "requestDef" : {
+      "type" : "object",
+      "properties" : {
+        "OrderValue" : {
+          "type" : "integer"
+        },
+        "OrderPaymentType" : {
+          "type" : "string"
+        },
+        "customerPhoneNum" : {
+          "type" : "integer"
+        },
+        "OrderDept" : {
+          "type" : "string"
+        },
+        "DeliveryPincode" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "responseDef" : {
+      "type" : "object",
+      "properties" : {
+        "orderId" : {
+          "type" : "string"
+        },
+        "orderDeliveryType" : {
+          "type" : "string"
+        },
+        "orderDeliveryInDays" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "orderStatusDef" : {
+      "type" : "object",
+      "properties" : {
+        "orderId" : {
+          "type" : "string"
+        },
+        "deliveryPincode" : {
+          "type" : "number"
+        },
+        "expectedToBeOn" : {
+          "type" : "number"
+        },
+        "currentStatus" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

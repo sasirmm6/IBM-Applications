@@ -1,0 +1,39 @@
+
+
+CREATE COMPUTE MODULE File_Split_CSV_MF_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE InputMsg CHARACTER;
+		DECLARE countryName CHARACTER;
+	/* we are casting the input message into character type because input is the BLOB Type which cannot be readable without also while
+	converting the BLOB we need to use CHARSET values which has available under the properties tree
+	*/	
+	SET InputMsg = CAST(InputRoot.BLOB.BLOB AS CHARACTER CCSID InputRoot.Properties.CodedCharSetId
+	                   ENCODING InputRoot.Properties.Encoding);
+	 /*
+	 for each country we have to make a call to http server and get the news and send in json format
+	 */
+	SET OutputRoot.JSON.Data.countryname= InputMsg;
+	SET OutputLocalEnvironment.Destination.File.Name = 'countrySpecific'||InputMsg||'.json';
+	
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+

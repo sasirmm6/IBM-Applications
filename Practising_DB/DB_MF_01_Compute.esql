@@ -1,0 +1,41 @@
+
+
+CREATE COMPUTE MODULE DB_MF_01_Compute
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		 CALL CopyMessageHeaders();
+		-- CALL CopyEntireMessage();
+		DECLARE uniqID CHARACTER UUIDASCHAR;
+		DECLARE inputRef REFERENCE TO InputRoot.JSON.Data;
+	IF inputRef.OrderValue>250 THEN
+	SET OutputRoot.JSON.Data.STATUS= 'DELIVERY IS AVAILABLE';
+	SET OutputRoot.JSON.Data.SERVICE='AVAILABLE';	
+	ELSE
+		SET OutputRoot.JSON.Data.Value='not more then 300';
+	END IF;
+	
+	INSERT INTO Database.PRACTDSN.sasidb.orderservice VALUES (uniqID,inputRef.OrderValue,inputRef.OrderPaymentType,inputRef.CustomerPhoneNum,inputRef.OrderDept,
+	inputRef.DrliveryPin,inputRef.DeliveryIndays,inputRef.DeliveryStatus);	
+	
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;
+
+
+
+
+

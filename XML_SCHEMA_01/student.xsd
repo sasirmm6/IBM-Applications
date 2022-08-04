@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="college">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="name"/>
+        <xsd:element ref="marks"/>
+        <xsd:element ref="rank"/>
+        <xsd:element ref="bloodgroup"/>
+        <xsd:element ref="address"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="bloodgroup" type="xsd:string"/>
+  <xsd:element name="address" type="xsd:string"/>
+  <xsd:element name="name" type="xsd:string"/>
+  <xsd:element name="rank" type="xsd:string"/>
+  <xsd:element name="marks" type="xsd:string"/>
+</xsd:schema>

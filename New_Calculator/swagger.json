@@ -1,0 +1,188 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "New_Calculator",
+    "version" : "1.0.0",
+    "description" : "New_Calculator"
+  },
+  "paths" : {
+    "/AdditionCal" : {
+      "get" : {
+        "operationId" : "getAdditionCal",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/Additioncal"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve AdditionCal",
+        "parameters" : [ {
+          "name" : "num1",
+          "in" : "query",
+          "type" : "string"
+        }, {
+          "name" : "num2",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/SubtractionCal" : {
+      "get" : {
+        "operationId" : "getSubtractionCal",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/SubtractionCal"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve SubtractionCal",
+        "parameters" : [ {
+          "name" : "operand1",
+          "in" : "query",
+          "type" : "string"
+        }, {
+          "name" : "operand2",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/MultiplicationCal" : {
+      "get" : {
+        "operationId" : "getMultiplicationCal",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/MultiplicationCal"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve MultiplicationCal",
+        "parameters" : [ {
+          "name" : "value1",
+          "in" : "query",
+          "type" : "string"
+        }, {
+          "name" : "value2",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/DivisionCal" : {
+      "get" : {
+        "operationId" : "getDivisionCal",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/DivisionCal"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve DivisionCal",
+        "parameters" : [ {
+          "name" : "number1",
+          "in" : "query",
+          "type" : "string"
+        }, {
+          "name" : "number2",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    },
+    "/Addition1" : {
+      "get" : {
+        "operationId" : "getAddition1",
+        "responses" : {
+          "200" : {
+            "description" : "The operation was successful.",
+            "schema" : {
+              "$ref" : "#/definitions/newaddition01"
+            }
+          }
+        },
+        "produces" : [ "application/json" ],
+        "description" : "Retrieve Addition1",
+        "parameters" : [ {
+          "name" : "newnum1",
+          "in" : "query",
+          "type" : "string"
+        }, {
+          "name" : "newnum2",
+          "in" : "query",
+          "type" : "string"
+        } ]
+      }
+    }
+  },
+  "basePath" : "/new_calculator/v1",
+  "definitions" : {
+    "Additioncal" : {
+      "type" : "object",
+      "properties" : {
+        "num1" : {
+          "type" : "integer"
+        },
+        "num2" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "SubtractionCal" : {
+      "type" : "object",
+      "properties" : {
+        "operand1" : {
+          "type" : "integer"
+        },
+        "operand2" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "MultiplicationCal" : {
+      "type" : "object",
+      "properties" : {
+        "value1" : {
+          "type" : "integer"
+        },
+        "value2" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "DivisionCal" : {
+      "type" : "object",
+      "properties" : {
+        "number1" : {
+          "type" : "integer"
+        },
+        "number2" : {
+          "type" : "integer"
+        }
+      }
+    },
+    "newaddition01" : {
+      "type" : "object",
+      "properties" : {
+        "newnum1" : {
+          "type" : "integer"
+        },
+        "newnum2" : {
+          "type" : "integer"
+        }
+      }
+    }
+  }
+}
